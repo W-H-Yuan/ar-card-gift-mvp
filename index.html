@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>AR 卡片礼物</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="start-screen">
+    <div class="panel">
+      <h1>AR 卡片礼物</h1>
+      <p id="card-name" class="muted"></p>
+      <button id="start-btn" class="primary">打开摄像头</button>
+      <p class="hint">对准备后的卡片，AR 就会出现</p>
+    </div>
+  </div>
+
+  <div id="ar-stage" hidden>
+    <div id="mindar-container"></div>
+    <button id="play-video-btn" class="primary floating" hidden>播放祝福视频</button>
+    <div id="status-toast" hidden></div>
+    <button id="back-btn">返回</button>
+  </div>
+
+  <div id="fullscreen-video" hidden>
+    <video id="fullscreen-video-el" controls playsinline></video>
+    <button id="close-video" class="primary">关闭</button>
+  </div>
+
+  <div id="password-screen" hidden>
+    <div class="panel">
+      <h2>口令验证</h2>
+      <input id="password-input" type="password" placeholder="请输入口令" />
+      <button id="password-btn" class="primary">进入</button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

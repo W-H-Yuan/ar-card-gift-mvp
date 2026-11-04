@@ -64,25 +64,13 @@
       '</a-scene>';
   }
 
-  function loadScript(src, done) {
-    const s = document.createElement('script');
-    s.src = src;
-    s.onload = done;
-    s.onerror = () => toast('AR 脚本加载失败，请检查网络');
-    document.head.appendChild(s);
-  }
-
   function loadAR() {
     pwScreen.hidden = true;
     startScreen.hidden = true;
     arStage.hidden = false;
     buildARScene();
-    loadScript('https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe-master.min.js', () => {
-      loadScript('https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js', () => {
-        bindAREvents();
-        toast(cfg.show3D ? '请对准备后的卡片，等待 AR 出现' : '请对准备后的卡片');
-      });
-    });
+    bindAREvents();
+    toast(cfg.show3D ? '请对准备后的卡片，等待 AR 出现' : '请对准备后的卡片');
   }
 
   function startAR() {

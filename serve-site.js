@@ -11,6 +11,7 @@ const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
   ".png": "image/png",
   ".gif": "image/gif",
   ".mp4": "video/mp4",
@@ -20,7 +21,17 @@ const mime = {
 
 http.createServer((req, res) => {
   let urlPath = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
-  if (urlPath === "/") urlPath = "/site/index.html";
+  if (urlPath === "/" || urlPath === "/index.html") {
+    res.writeHead(302, { Location: "/site/" });
+    res.end();
+    return;
+  }
+  if (urlPath === "/site") {
+    res.writeHead(302, { Location: "/site/" });
+    res.end();
+    return;
+  }
+  if (urlPath === "/site/") urlPath = "/site/index.html";
   const file = path.join(root, urlPath);
   if (!file.startsWith(root) || !fs.existsSync(file) || !fs.statSync(file).isFile()) {
     res.writeHead(404);
